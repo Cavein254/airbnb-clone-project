@@ -181,6 +181,34 @@ Below is an overview of the core entities, essential fields, and their inter-rel
 
 This relational schema ensures data consistency and creates clear connections between users, their listings, bookings, payments, and feedback.
 
+## 🧩 Feature Breakdown
+
+The Airbnb Clone Backend is designed around modular, scalable features that mirror the core functionality of a real-world booking platform. Below is a summary of the major features and how they contribute to the overall system:
+
+### 👤 User Management
+
+Handles user registration, login, authentication (JWT), and role-based access (host or guest). This ensures secure access control and sets the foundation for user-specific content like property listings and bookings.
+
+### 🏠 Property Management
+
+Allows hosts to create, update, and manage property listings. Includes support for pricing, availability, and descriptions — forming the core content of the platform that guests browse and book.
+
+### 📅 Booking System
+
+Enables guests to book available properties by selecting check-in/check-out dates and confirming reservations. It enforces availability constraints and calculates total cost, ensuring booking accuracy and preventing conflicts.
+
+### 💳 Payment Integration
+
+Manages payment tracking for bookings, including status updates (pending, completed, failed). Although third-party gateways are not integrated in this backend-only phase, the structure supports future integration with providers like Stripe or PayPal.
+
+### ⭐ Review System
+
+Guests can leave reviews and ratings for properties they’ve stayed in. This feature enhances user trust and transparency by offering peer-to-peer feedback that influences future booking decisions.
+
+### 🧾 Admin & Reporting (Planned)
+
+An admin panel will support moderation, analytics, and data management. This includes user verification, listing approval workflows, and system health insights to aid in platform governance and operational oversight.
+
 ## 🚀 Getting Started
 
 To set up this project locally:
