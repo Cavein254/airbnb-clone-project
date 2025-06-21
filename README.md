@@ -39,6 +39,48 @@ This project is ideal for learners and developers seeking to deepen their unders
 - **Git & GitHub** – For version control and team collaboration.
 - **GitHub Actions** – For continuous integration and automated testing pipelines.
 
+## 👥 Team Roles
+
+### 📋 Backend Developer
+
+Responsible for designing and implementing the REST and GraphQL endpoints using Django. Duties include:
+
+- Writing clean, maintainable backend logic
+- Integrating with MySQL and Redis
+- Ensuring code quality, performing code reviews, and collaborating with QA teams
+
+### 🗃️ Database Administrator (DBA)
+
+Manages database architecture and operations:
+
+- Designing efficient MySQL schemas and indexing
+- Handling migrations and performance tuning
+- Ensuring data integrity, backup, and restore processes
+
+### ⚙️ DevOps / SRE Engineer
+
+Focuses on deployment, scalability, and reliability:
+
+- Building and maintaining Docker/Docker Compose environments
+- Automating CI/CD pipelines (GitHub Actions)
+- Monitoring system health and enforcing best practices
+
+### 🛡️ Quality Assurance (QA) Engineer
+
+Ensures application quality through rigorous testing:
+
+- Writing unit and integration tests using Pytest / pytest-django
+- Automating test suites, identifying bugs, and verifying fixes
+- Coordinating with backend developers to maintain high code quality
+
+### 🧠 Product Owner / Project Manager
+
+Guides the project’s vision, scope, and delivery:
+
+- Defining requirements and managing the product roadmap
+- Balancing timeline, quality, and scope constraints
+- Facilitating communication, removing blockers, and reporting progress to stakeholders
+
 ## 🚀 Getting Started
 
 To set up this project locally:
