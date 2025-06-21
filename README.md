@@ -15,7 +15,7 @@ This project is ideal for learners and developers seeking to deepen their unders
 - Apply best practices for API authentication and security
 - Lay a foundation for a future frontend integration
 
-## 🧰 Tech Stack
+## 🧰 Technology Stack
 
 ### 🔧 Backend
 
