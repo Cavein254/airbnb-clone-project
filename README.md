@@ -81,6 +81,106 @@ Guides the project’s vision, scope, and delivery:
 - Balancing timeline, quality, and scope constraints
 - Facilitating communication, removing blockers, and reporting progress to stakeholders
 
+## 💾 Database Design
+
+Below is an overview of the core entities, essential fields, and their inter-relationships in the **Airbnb Clone Backend**:
+
+### 👤 Users
+
+**Key Fields:**
+
+- `id` (PK) – Unique user identifier
+- `email` (unique) – Login and contact email
+- `password_hash` – Securely stored password
+- `is_host` (Boolean) – Indicates if the user can list properties
+- `created_at` / `updated_at` – Account timestamps  
+  **Relationships:**
+- A user can own multiple properties
+- A user can make multiple bookings
+- A user can leave multiple reviews
+- A user can make multiple payments
+
+---
+
+### 🏠 Properties
+
+**Key Fields:**
+
+- `id` (PK) – Unique property ID
+- `owner_id` (FK → Users) – The host of the property
+- `title` – Listing title
+- `description` – Detailed property details
+- `price_per_night` – Nightly rate
+- `location` (city, country, address) – Geographical info
+  **Relationships:**
+- Each property belongs to one host (user)
+- A property can have multiple bookings
+- A property can have multiple reviews
+
+---
+
+### 📅 Bookings
+
+**Key Fields:**
+
+- `id` (PK) – Booking ID
+- `user_id` (FK → Users) – Guest who made the booking
+- `property_id` (FK → Properties) – The booked property
+- `start_date` / `end_date` – Booking period
+- `total_price` – Calculated cost
+- `status` – E.g. "pending", "confirmed", "cancelled"
+  **Relationships:**
+- Belongs to one user (guest)
+- Belongs to one property
+- Has one associated payment
+
+---
+
+### ⭐ Reviews
+
+**Key Fields:**
+
+- `id` (PK) – Review ID
+- `user_id` (FK → Users) – Who wrote the review
+- `property_id` (FK → Properties) – Which property is reviewed
+- `rating` (int) – 1–5 star rating
+- `comment` – Optional feedback
+  **Relationships:**
+- Written by one user
+- Tied to one property
+
+---
+
+### 💳 Payments
+
+**Key Fields:**
+
+- `id` (PK) – Payment record ID
+- `booking_id` (FK → Bookings) – Related booking
+- `user_id` (FK → Users) – Who made the payment
+- `amount` – Total charged
+- `status` – E.g. "pending", "completed", "failed"
+- `paid_at` / `payment_date` – Timestamp  
+  **Relationships:**
+- Linked to one booking
+- Indirectly tied to one user via the booking
+
+---
+
+### 🔗 Entity Relationships (ER Summary)
+
+| Relationship       | Type                    |
+| ------------------ | ----------------------- |
+| User → Property    | 1‑to‑many               |
+| User → Booking     | 1‑to‑many               |
+| User → Review      | 1‑to‑many               |
+| User → Payment     | 1‑to‑many (via Booking) |
+| Property → Booking | 1‑to‑many               |
+| Property → Review  | 1‑to‑many               |
+| Booking → Payment  | 1‑to‑1                  |
+
+This relational schema ensures data consistency and creates clear connections between users, their listings, bookings, payments, and feedback.
+
 ## 🚀 Getting Started
 
 To set up this project locally:
