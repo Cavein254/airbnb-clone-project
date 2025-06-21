@@ -259,6 +259,26 @@ Error messages are generalized for users but logged with full context for admins
 
 > 🔒 **Why it matters**: Prevents attackers from gaining internal insights and supports incident response and debugging.
 
+## ⚙️ CI/CD Pipeline
+
+**CI/CD (Continuous Integration and Continuous Deployment)** pipelines automate the process of building, testing, and deploying code, allowing for faster development cycles and higher software quality. CI/CD ensures that every change pushed to the codebase is automatically validated and can be deployed with confidence.
+
+For this project, CI/CD plays a critical role by:
+
+- Automatically running tests to catch bugs early
+- Enforcing code quality and style checks
+- Building and deploying Docker containers in consistent environments
+- Reducing manual intervention in deployments, minimizing human error
+
+### 🛠 Tools & Technologies
+
+- **GitHub Actions**: Automates workflows such as running tests, linting, and deployment when code is pushed or merged.
+- **Docker**: Ensures consistent environments across development, testing, and production stages.
+- **Docker Compose**: Orchestrates multi-service setups during development and testing.
+- **Pytest**: Runs the test suite in the pipeline for backend validation.
+
+> 🚀 Example Workflow: On every pull request, GitHub Actions can run the test suite, lint the code, and build a Docker image — ensuring your code is reliable and ready for production.
+
 ## 🚀 Getting Started
 
 To set up this project locally:
