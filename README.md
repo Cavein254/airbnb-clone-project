@@ -209,6 +209,56 @@ Guests can leave reviews and ratings for properties they’ve stayed in. This fe
 
 An admin panel will support moderation, analytics, and data management. This includes user verification, listing approval workflows, and system health insights to aid in platform governance and operational oversight.
 
+## 🔐 API Security
+
+Ensuring robust API security is critical for protecting sensitive user data, preventing abuse, and maintaining trust across the platform. Below are the key security measures implemented in the Airbnb Clone Backend:
+
+### 🔑 Authentication
+
+We use **JWT (JSON Web Tokens)** for stateless user authentication. Access tokens are short-lived and securely transmitted in headers, while refresh tokens are used to renew sessions without forcing repeated logins. This prevents unauthorized access and keeps session management scalable.
+
+> 🔒 **Why it matters**: Prevents account hijacking, ensures only verified users can access protected routes like booking or property creation.
+
+---
+
+### 🛂 Authorization
+
+Role-based access control (RBAC) ensures users can only perform actions appropriate to their role (e.g., host vs guest). For example, only hosts can list properties, and only the user who made a booking can cancel it.
+
+> 🔒 **Why it matters**: Enforces user boundaries, prevents privilege escalation, and safeguards user-owned resources.
+
+---
+
+### 🚦 Rate Limiting
+
+Rate limiting and request throttling will be enforced (e.g., via **Redis + Django Ratelimit**) to mitigate abuse, brute-force attacks, and DDoS attempts on login or search endpoints.
+
+> 🔒 **Why it matters**: Protects the platform from spamming, excessive load, and malicious automation.
+
+---
+
+### 🧼 Input Validation & Sanitization
+
+All inputs (especially from public-facing endpoints like reviews or listings) are validated and sanitized using Django and DRF serializers to prevent SQL injection, XSS, and malformed data.
+
+> 🔒 **Why it matters**: Shields the database and users from malicious or malformed input that could compromise system integrity.
+
+---
+
+### 🧾 Secure Payment Handling (Planned)
+
+While payment processing integration is out of scope for the backend-only phase, the architecture ensures sensitive payment actions (like initiating or confirming payments) are restricted and audit-logged.
+
+> 🔒 **Why it matters**: Lays the groundwork for safe integration with third-party processors (e.g., Stripe), reducing the risk of financial fraud or transaction tampering.
+
+---
+
+### 🧯 Error Handling & Logging
+
+Error messages are generalized for users but logged with full context for admins. Sensitive information is never exposed in responses.
+
+> 🔒 **Why it matters**: Prevents attackers from gaining internal insights and supports incident response and debugging.
+
 ## 🚀 Getting Started
 
 To set up this project locally:
