@@ -189,16 +189,19 @@ The Airbnb Clone Backend is designed around modular, scalable features that mirr
 ### 👤 User Management
 
 Handles user registration, login, authentication (JWT), and role-based access (host or guest). This ensures secure access control and sets the foundation for user-specific content like property listings and bookings.
+
 **Endpoints:** `/users/`, `/users/{user_id}/`
 
 ### 🏠 Property Management
 
 Allows hosts to create, update, and manage property listings. Includes support for pricing, availability, and descriptions — forming the core content of the platform that guests browse and book.
+
 **Endpoints:** `/properties/`, `/properties/{property_id}/`
 
 ### 📅 Booking System
 
 Enables guests to book available properties by selecting check-in/check-out dates and confirming reservations. It enforces availability constraints and calculates total cost, ensuring booking accuracy and preventing conflicts.
+
 **Endpoints:** `/bookings/`, `/bookings/{booking_id}/`
 
 ### 💳 Payment Integration
