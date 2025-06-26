@@ -91,15 +91,17 @@ Below is an overview of the core entities, essential fields, and their inter-rel
 **Key Fields:**
 
 - `id` (PK) – Unique user identifier
+- `first_name` (varchar) – User's first name
+- `last_name` (varchar) – User's last name
 - `email` (unique) – Login and contact email
 - `password_hash` – Securely stored password
-- `is_host` (Boolean) – Indicates if the user can list properties
-- `created_at` / `updated_at` – Account timestamps  
+- `role` (ENUM) – User can be `guest`, `host`, or `admin`
+- `created_at` – Account timestamps  
   **Relationships:**
 - A user can own multiple properties
-- A user can make multiple bookings
 - A user can leave multiple reviews
-- A user can make multiple payments
+- A user can write many messages
+- A user can receive multiple messages
 
 ---
 
@@ -108,11 +110,11 @@ Below is an overview of the core entities, essential fields, and their inter-rel
 **Key Fields:**
 
 - `id` (PK) – Unique property ID
-- `owner_id` (FK → Users) – The host of the property
-- `title` – Listing title
-- `description` – Detailed property details
-- `price_per_night` – Nightly rate
-- `location` (city, country, address) – Geographical info
+- `host_id` (FK → Users) – The host of the property
+- `name`(varchar) – name of the property
+- `description` (Text) – Detailed property details
+- `location` (varchar) – Geographical info
+- `price_per_night`(Decimal) – Nightly rate
   **Relationships:**
 - Each property belongs to one host (user)
 - A property can have multiple bookings
@@ -127,9 +129,10 @@ Below is an overview of the core entities, essential fields, and their inter-rel
 - `id` (PK) – Booking ID
 - `user_id` (FK → Users) – Guest who made the booking
 - `property_id` (FK → Properties) – The booked property
-- `start_date` / `end_date` – Booking period
-- `total_price` – Calculated cost
-- `status` – E.g. "pending", "confirmed", "cancelled"
+- `start_date`(Timestamp) - Date booked
+- `end_date` (Timestamp) – Booking expiry
+- `total_price` (Decimal) – Calculated cost
+- `status` (Enum) – status can be `pending`, `confirmed`, or `cancelled`
   **Relationships:**
 - Belongs to one user (guest)
 - Belongs to one property
@@ -145,7 +148,8 @@ Below is an overview of the core entities, essential fields, and their inter-rel
 - `user_id` (FK → Users) – Who wrote the review
 - `property_id` (FK → Properties) – Which property is reviewed
 - `rating` (int) – 1–5 star rating
-- `comment` – Optional feedback
+- `comment` – feedback
+- `created_at` – Account timestamps  
   **Relationships:**
 - Written by one user
 - Tied to one property
@@ -159,26 +163,25 @@ Below is an overview of the core entities, essential fields, and their inter-rel
 - `id` (PK) – Payment record ID
 - `booking_id` (FK → Bookings) – Related booking
 - `user_id` (FK → Users) – Who made the payment
-- `amount` – Total charged
-- `status` – E.g. "pending", "completed", "failed"
-- `paid_at` / `payment_date` – Timestamp  
+- `amount` (Decimal) – Total charged
+- `payment_date` (Timestamp) - When payment was made
+- `payment_method` (Enum) - can be `credit_card`, `paypal`, or `stripe`
   **Relationships:**
 - Linked to one booking
-- Indirectly tied to one user via the booking
 
 ---
 
 ### 🔗 Entity Relationships (ER Summary)
 
-| Relationship       | Type                    |
-| ------------------ | ----------------------- |
-| User → Property    | 1‑to‑many               |
-| User → Booking     | 1‑to‑many               |
-| User → Review      | 1‑to‑many               |
-| User → Payment     | 1‑to‑many (via Booking) |
-| Property → Booking | 1‑to‑many               |
-| Property → Review  | 1‑to‑many               |
-| Booking → Payment  | 1‑to‑1                  |
+| Relationship       | Type      |
+| ------------------ | --------- |
+| User → Property    | 1‑to‑many |
+| User → Booking     | 1‑to‑many |
+| User → Review      | 1‑to‑many |
+| User → message     | 1‑to‑many |
+| Property → Booking | 1‑to‑many |
+| Property → Review  | 1‑to‑many |
+| Booking → Payment  | 1‑to‑1    |
 
 This relational schema ensures data consistency and creates clear connections between users, their listings, bookings, payments, and feedback.
 
